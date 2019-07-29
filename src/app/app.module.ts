@@ -1,16 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// import {AngularFireModule } from 'angularfire2';
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
-// import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
-// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
@@ -40,10 +39,10 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireDatabaseModule,
-    // AngularFireAuthModule,
-    BsDropdownModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    NgbModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase , AngularFireObject } from '@angular/fire/database';
+import { AppUser } from '../models/app-user';
 
 
 @Injectable({
@@ -20,8 +21,9 @@ export class UserService {
     this.db.object('/users/' + user.uid).update(userInfo); 
   }
 
-  get = (uid :string ) => {
+  get(uid :string): AngularFireObject<String> {
     return this.db.object('/users/' + uid);
+    //return this.db.object('/users/' + uid);
   }
 
 }

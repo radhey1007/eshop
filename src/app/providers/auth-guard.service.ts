@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { Injectable, ɵConsole } from '@angular/core';
+
 import { AuthService } from './auth.service';
-import { Router, RouterStateSnapshot } from '@angular/router';
+import { Router, RouterStateSnapshot, CanActivate } from '@angular/router';
 import 'rxjs/add/operator/map'
 
 
@@ -9,8 +9,6 @@ import 'rxjs/add/operator/map'
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-  path: import("@angular/router").ActivatedRouteSnapshot[];
-  route: import("@angular/router").ActivatedRouteSnapshot;
 
   constructor(private auth : AuthService,private router :Router) {
 
@@ -18,6 +16,8 @@ export class AuthGuardService implements CanActivate {
 
    canActivate = (route , state:RouterStateSnapshot) => {
     return this.auth.user$.map(user => {
+      console.log(user , 'in auth');
+      debugger;
       if(user) return true;
 
       this.router.navigate(['/login'], {queryParams:{ returnUrl : state.url}});

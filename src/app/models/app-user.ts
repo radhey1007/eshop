@@ -1,8 +1,8 @@
 
 export interface AppUser {
 
-    name:string;
-    email:string;
+    name:String;
+    email:String;
     isAdmin:boolean;
 
 }

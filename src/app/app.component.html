@@ -2,6 +2,11 @@
 
 <main role="main" class="container">
   <div class="starter-template">
+    <div *ngFor ="let user of userInfo">
+      <p>{{ user.data.email}}</p>
+      <p>{{user.data.name}}</p>
+      <p>{{user.key}}</p>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </main>

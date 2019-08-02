@@ -16,7 +16,9 @@ export class AppComponent {
 
   constructor(public auth : AuthService,public route:Router, public userService : UserService){
     this.auth.user$.subscribe(user => {
+      console.log(user , 'user deatils')
       if(user){
+       localStorage.setItem('email',user.email);
        this.userService.save(user);
        var returnurl =  localStorage.getItem('returnUrl');
        route.navigateByUrl(returnurl);

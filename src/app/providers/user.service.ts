@@ -28,8 +28,12 @@ export class UserService {
   }
 
 
-  getUserList(){
+  getUserList = () => {
     return this.db.list('/users/');
+  }
+
+  getUserInfoByEmail = (email) => {
+   return this.db.object('/users/' + email);
   }
 
 }

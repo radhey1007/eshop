@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AppUser } from '../models/app-user';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { UserService } from './user.service';
 
 
@@ -30,7 +30,14 @@ export class AuthService {
     this.angularFireAuth.auth.signOut();
   }
 
-  get appUser$(): Observable<AppUser>{
+  get appUser$(): Observable<AppUser> {
+    console.log('in app user');
+
+    // return this.user$.switchMap(user => this.userService.get(user.uid))
+
+
+    // return this.user$.pipe(map(user => this.userService.get(user.uid)));
+
     return this.user$.pipe(switchMap(user=>{
       if(user){
         return this.userService.get(user.uid).valueChanges();

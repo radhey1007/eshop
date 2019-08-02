@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { AuthService } from '../providers/auth.service';
+import { AppUser } from '../models/app-user';
 
 
 @Component({
@@ -12,8 +13,9 @@ import { AuthService } from '../providers/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  appUser:AppUser;
   constructor(public angularFireAuth:AngularFireAuth , public auth : AuthService) { 
-  
+    auth.appUser$.subscribe(appUser => this.appUser = appUser);
   }
 
   ngOnInit() {

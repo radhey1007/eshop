@@ -2,11 +2,34 @@
 
 <main role="main" class="container">
   <div class="starter-template">
-    <div *ngFor ="let user of userInfo">
+    <!-- <div *ngFor ="let user of userInfo">
       <p>{{ user.data.email}}</p>
       <p>{{user.data.name}}</p>
       <p>{{user.key}}</p>
-    </div>
-    <router-outlet></router-outlet>
+    </div> -->
+   
+
+  <div class="container">
+    <h2>List Of Users</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Email</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr class="info" *ngFor ="let user of userInfo ; let i=index">
+          <td>{{ user.data.email}}</td>
+          <td>{{ user.data.name}}</td>
+          <td>{{ i }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <router-outlet></router-outlet>
+</div>
+
 </main>

@@ -7,29 +7,29 @@
       <p>{{user.data.name}}</p>
       <p>{{user.key}}</p>
     </div> -->
-   
 
-  <div class="container">
-    <h2>List Of Users</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>S.No</th>
-          <th>Email</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody> 
-        <tr class="info" *ngFor ="let user of userInfo ; let i=index">
-          <td>{{ user.data.email}}</td>
-          <td>{{ user.data.name}}</td>
-          <td>{{ i }}</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="container">
+      <h2>List Of Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Email</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="info" *ngFor="let user of userInfo ; let i=index">
+            <td>{{ i }}</td>
+            <td>{{ user.data.email}}</td>
+            <td>{{ user.data.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <router-outlet></router-outlet>
   </div>
-
-  <router-outlet></router-outlet>
-</div>
 
 </main>

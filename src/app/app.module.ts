@@ -25,6 +25,7 @@ import { AuthService } from './providers/auth.service';
 import { AuthGuardService } from './providers/auth-guard.service';
 import { UserService } from './providers/user.service';
 import { AdminAuthGuardService } from './providers/admin-auth/admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 
 
@@ -40,7 +41,8 @@ import { AdminAuthGuardService } from './providers/admin-auth/admin-auth-guard.s
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

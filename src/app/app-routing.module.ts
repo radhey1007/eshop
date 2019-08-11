@@ -24,14 +24,13 @@ const routes: Routes = [
   { path: 'order-sucess', component: OrderSucessComponent , canActivate : [AuthGuardService]},
   { path: 'my/orders', component: MyOrdersComponent , canActivate : [AuthGuardService]},
   
-  {  path: 'admin/products', 
-     component: AdminProductsComponent , 
+  {  path: 'admin-products', 
+     component: AdminProductsComponent, 
      canActivate : [AuthGuardService]
   },
   {  
-  path: 'admin/products/new', 
-  component: ProductFormComponent , 
-  canActivate : [AuthGuardService]
+  path: 'admin-products/new', 
+  component: ProductFormComponent 
   },
   { path: 'admin/orders',
     component: AdminOrdersComponent ,

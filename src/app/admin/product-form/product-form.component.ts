@@ -1,4 +1,11 @@
+import { CategoryService } from './../../providers/category.service';
 import { Component, OnInit } from '@angular/core';
+import { $ } from 'protractor';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @Component({
   selector: 'app-product-form',
@@ -7,12 +14,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
-  // category:any=[{
-  //   'name':
-  // }];
-  constructor() { }
+  categories$:any;
+  
+  constructor(public categoryService:CategoryService) {
+    alert('in page product');
+    this.getCategoryList();
+   }
 
   ngOnInit() {
+  }
+
+  getCategoryList = () => {
+ 
+    //this.categoryService.getCategoryList().snapshotChanges.subscribe();
+
+  this.categoryService.getCategoryList().snapshotChanges().subscribe(res => {
+   res.forEach((element,i) => {
+     element.payload.toJSON()
+  })
+})
+
+
+
+ console.table(this.categories$ , '=====')
+
   }
 
 }

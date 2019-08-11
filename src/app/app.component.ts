@@ -16,7 +16,7 @@ export class AppComponent {
 
   constructor(public auth : AuthService,public route:Router, public userService : UserService){
     this.auth.user$.subscribe(user => {
-      console.log(user , 'user deatils')
+     // console.log(user , 'user deatils')
       if(user){
        localStorage.setItem('email',user.email);
        this.userService.save(user);
@@ -35,9 +35,9 @@ export class AppComponent {
        }
        this.userInfo.push(obj);
          });         
-         console.log(this.userInfo , '==================');
+         //console.log(this.userInfo , '==================');
        },err => {
-         console.log('err', err)
+         //console.log('err', err)
        })
       }
     })

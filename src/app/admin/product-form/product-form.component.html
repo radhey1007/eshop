@@ -12,7 +12,7 @@
     <label for="category">Category</label>
     <select id="category" type="text" class="form-control">
       <option value=""></option>
-      <option *ngFor="let c of categories$ | async" [value]="c.$key">
+      <option *ngFor="let c of categories$.data | async" [value]="">
       {{ c.name}}  
       </option>
     </select>

@@ -35,9 +35,8 @@ export class AppComponent {
        }
        this.userInfo.push(obj);
          });         
-         //console.log(this.userInfo , '==================');
        },err => {
-         //console.log('err', err)
+         console.log('err', err);
        })
       }
     })

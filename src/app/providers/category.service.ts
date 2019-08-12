@@ -9,6 +9,11 @@ export class CategoryService {
   constructor(public db:AngularFireDatabase) { }
 
   getCategoryList = () => {
+    var obj = {
+      query: {
+        orderByChild: 'name',
+      }
+    }
     return this.db.list('/categories');
   }
 }

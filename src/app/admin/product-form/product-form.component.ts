@@ -14,7 +14,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 })
 export class ProductFormComponent implements OnInit {
 
-  categories$:any;
+  categories$:any=[];
   
   constructor(public categoryService:CategoryService) {
     alert('in page product');
@@ -30,12 +30,15 @@ export class ProductFormComponent implements OnInit {
 
   this.categoryService.getCategoryList().snapshotChanges().subscribe(res => {
    res.forEach((element,i) => {
-     element.payload.toJSON()
+     element.payload.toJSON();
+     console.log(element.payload.toJSON(), element.key)
+     var obj = {
+      'data':element.payload.toJSON() ,
+      'key':element.key
+    }
+   this.categories$.push(obj);
   })
 })
-
-
-
  console.table(this.categories$ , '=====')
 
   }

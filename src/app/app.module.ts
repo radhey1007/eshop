@@ -1,7 +1,7 @@
 import { CategoryService } from './providers/category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -29,6 +29,15 @@ import { AdminAuthGuardService } from './providers/admin-auth/admin-auth-guard.s
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './providers/product.service';
+import { CommonFunctionsService } from './providers/common-functions.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -47,19 +56,24 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthService,
     AuthGuardService,
     AdminAuthGuardService,
     UserService,
-    CategoryService
+    CategoryService,
+    ProductService,
+    CommonFunctionsService
   ],
   bootstrap: [AppComponent]
 })

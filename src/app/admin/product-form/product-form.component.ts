@@ -10,6 +10,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/take';
 
 
 @Component({
@@ -20,10 +23,15 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductFormComponent implements OnInit {
 
   categories: any = [];
-  validation_messages: any = {};
+  product:any = [];
+  id: any;
 
-  constructor(public categoryService: CategoryService , public productService : ProductService,private toastr: ToastrService , public commonFn : CommonFunctionsService) {
+
+  constructor(public categoryService: CategoryService , public productService : ProductService,private toastr: ToastrService , public commonFn : CommonFunctionsService , private router:Router, private route: ActivatedRoute) {
     this.getCategoryList();
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id) this.get(this.id);
 
   }
 
@@ -45,12 +53,25 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct = (product) => {
-   console.log(product);
-  //  var res = this.productService.create(product);
-  //  if(res){
-  //   this.toastr.success('Sucess!', 'Product added successfully !!!');
-  //  } 
-
+   if(this.id){
+    var res  = this.productService.update(this.id,product);
+    if(res){
+      this.toastr.success('Sucess!', 'Product updated successfully !!!');
+      this.router.navigate(['admin-products']);
+    }
+   } else {
+    var res1 = this.productService.create(product);
+    if(res){
+     this.toastr.success('Sucess!', 'Product added successfully !!!');
+      this.router.navigate(['admin-products']);
+    }
+   }  
   }
 
+  get = (id) => {
+    this.productService.get(id).snapshotChanges().take(1).subscribe(res => { 
+      console.log(res.payload.toJSON());
+      this.product = res.payload.toJSON();
+    })
+  }
 }

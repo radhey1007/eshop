@@ -1,1 +1,24 @@
-<a routerLink="new" class="btn btn-primary">New Product</a>
+<p>
+    <a routerLink="new" class="btn btn-primary">New Product</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="info" *ngFor="let product of productInfo ; let i=index">
+            <td>{{ product.data.title }}</td>
+            <td>{{ product.data.price }}</td>
+            <td>{{ product.data.category }}</td>
+            <td><a [routerLink]="['/admin-products' , product.data.key]">Edit</a>
+                <br /> <a (click)="delete(product.data.key)"> Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

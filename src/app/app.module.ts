@@ -36,7 +36,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from './providers/product.service';
 import { CommonFunctionsService } from './providers/common-functions.service';
 
-
+import {DataTableModule} from 'angular5-data-table';
 
 
 @NgModule({
@@ -64,7 +64,8 @@ import { CommonFunctionsService } from './providers/common-functions.service';
     NgbModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    DataTableModule
   ],
   providers: [
     AuthService,
@@ -74,6 +75,7 @@ import { CommonFunctionsService } from './providers/common-functions.service';
     CategoryService,
     ProductService,
     CommonFunctionsService
+    
   ],
   bootstrap: [AppComponent]
 })

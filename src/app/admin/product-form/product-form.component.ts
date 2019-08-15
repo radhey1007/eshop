@@ -31,6 +31,7 @@ export class ProductFormComponent implements OnInit {
     this.getCategoryList();
 
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
     if(this.id) this.get(this.id);
 
   }

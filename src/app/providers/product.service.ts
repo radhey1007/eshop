@@ -5,12 +5,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProductService {
-
-  constructor(public angularFireDatabase :AngularFireDatabase) { }
+  
+  constructor(public db :AngularFireDatabase) { }
 
   create = (product) => {
-
-    return this.angularFireDatabase.list('/products').push(product);
-
+    return this.db.list('/products').push(product);
   }
+
+  getAll = () => {
+  return this.db.list('/products');
+  }
+
+  get = (productId) => {
+    return this.db.object('/products/' + productId);
+  }
+
+  update = (id, product) => {
+    return this.db.object('/products/' + id).update(product);
+  }
+
+  delete = (id) => {
+    return this.db.object('/products/' + id).remove();
+  }
+
 }

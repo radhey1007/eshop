@@ -28,12 +28,19 @@ const routes: Routes = [
      component: AdminProductsComponent, 
      canActivate : [AuthGuardService]
   },
+  
   {  
   path: 'admin-products/new', 
-  component: ProductFormComponent 
+  component: ProductFormComponent,
+  canActivate : [AuthGuardService] 
+  },
+  {  
+    path: 'admin-products/:id', 
+    component: ProductFormComponent,
+    canActivate : [AuthGuardService] 
   },
   { path: 'admin/orders',
-    component: AdminOrdersComponent ,
+    component: AdminOrdersComponent,
     canActivate : [AuthGuardService] 
   },
 ];

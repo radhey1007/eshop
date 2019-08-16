@@ -36,30 +36,48 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.subscription = this.productService.getAll().snapshotChanges().subscribe(res => {
       res.forEach((element, i) => {
         element.payload.toJSON();
-        var obj = {
-          'data': Object.assign({ 'key': element.key }, element.payload.toJSON())
-        };
+        // var obj = {
+        //   'data': Object.assign({ 'key': element.key }, element.payload.toJSON())
+        // };
 
         // this.productInfo = obj.data;
-        this.productInfo.push(obj);
-        console.log(obj);
+        this.productInfo.push(Object.assign({ 'key': element.key }, element.payload.toJSON()));
       }
       );
     });
     this.filteredProduct = this.productInfo;
-    this.tableResource = new DataTableResource(this.productInfo);
+    console.log(this.productInfo);
+    this.initializeTable(this.productInfo);
+
+
+  }
+
+  private initializeTable = (product:any) => {
+    this.tableResource = new DataTableResource(product);
+
+    console.log(this.tableResource , '666666');
+
     this.tableResource.query({ offset: 0 })
-      .then(items => {
-        this.items = items;
-        console.log(this.items, 'text');
-      });
+    .then(items => {
+      this.items = items;
+      console.log(items, '=================');
+    });
+  this.tableResource.count()
+    .then(count => {
+      this.itemCount = count;
+      console.log(count);
+    });
+  }
 
-    this.tableResource.count()
-      .then(count => {
-        this.itemCount = count;
-        console.log(count);
-      });
+  reloadItems = () => {
 
+    if(!this.tableResource) return;
+
+    this.tableResource.query({ offset: 0 })
+    .then(items => {
+      this.items = items;
+      console.log(this.items, 'text111');
+    });
   }
 
   delete = (id) => {
@@ -72,10 +90,8 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filter = (query: String) => {
-    //console.log(query);
     query = query.toLowerCase();
-    this.filteredProduct = (query) ? this.productInfo.filter(p => p.data.title.toLowerCase().includes(query)) : this.productInfo;
-    console.log(this.filteredProduct);
+    this.filteredProduct = (query) ? this.productInfo.filter(p => p.title.toLowerCase().includes(query)) : this.productInfo;
   }
 
 }

@@ -19,12 +19,12 @@
     <data-table-column [property]="'key'" [header]="'Action'" [resizable]="true">
         <ng-template #dataTableCell let-item="'item'">
             <a [routerLink]="['/admin-products' , key]">Edit </a>
-            <br /> <a (click)="delete(items.key)"> Delete</a>
+            <br /> <a (click)="delete(key)"> Delete</a>
         </ng-template>
     </data-table-column>
 </data-table>
 
-<table class="table">
+<!-- <table class="table">
     <thead>
         <tr>
             <th>Title</th>
@@ -43,4 +43,4 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->

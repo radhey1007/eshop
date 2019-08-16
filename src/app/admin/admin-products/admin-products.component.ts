@@ -48,15 +48,12 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.filteredProduct = this.productInfo;
     console.log(this.productInfo);
     this.initializeTable(this.productInfo);
-
-
   }
 
   private initializeTable = (product:any) => {
+    console.log('product=='+product);
     this.tableResource = new DataTableResource(product);
-
     console.log(this.tableResource , '666666');
-
     this.tableResource.query({ offset: 0 })
     .then(items => {
       this.items = items;

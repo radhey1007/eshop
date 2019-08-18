@@ -16,17 +16,21 @@ export class AppComponent {
 
   constructor(public auth : AuthService,public route:Router, public userService : UserService){
     this.auth.user$.subscribe(user => {
-     // console.log(user , 'user deatils')
-      if(user){
+
+      if(!user) return;
+
        localStorage.setItem('email',user.email);
        this.userService.save(user);
        var returnurl =  localStorage.getItem('returnUrl');
-       route.navigateByUrl(returnurl);
-      }
+       if(!returnurl) return;
+
+        localStorage.removeItem('returnUrl');
+        route.navigateByUrl(returnurl);
     });
 
     this.auth.user$.subscribe(user => {
-      if(user){
+      if(!user) return;
+      
       this.userService.getUserList().snapshotChanges().subscribe(res => {
          res.forEach((element,i) => {element.payload.toJSON()
        var obj = {
@@ -37,8 +41,7 @@ export class AppComponent {
          });         
        },err => {
          console.log('err', err);
-       })
-      }
+       })      
     })
   }
 

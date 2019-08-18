@@ -26,7 +26,7 @@
           [(ngModel)]="product.category">
           <option value=""></option>
           <option *ngFor="let c of categories " [value]="c.key">
-            {{ c.data.name}}
+            {{ c.name}}
           </option>
         </select>
         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
@@ -45,10 +45,10 @@
     </form>
   </div>
   <div class="col-md-6">
-    <div class="card" style="width: 18rem;">
+    <div *ngIf="title.value" class="card" style="width: 18rem;">
       <img class="card-img-top" [src]="imageUrl.value">
-      <div class="card-body" *ngIf="imageUrl.value">{{ imageUrl.value}}
-        <h5 class="card-title">{{ title.value}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{ title.value }}</h5>
         <p class="card-text"> {{ price.value | currency:'USD' : true }}</p>
       </div>
     </div>

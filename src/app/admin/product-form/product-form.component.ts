@@ -44,24 +44,21 @@ export class ProductFormComponent implements OnInit {
     this.categoryService.getCategoryList().snapshotChanges().subscribe(res => {
       res.forEach((element, i) => {
         element.payload.toJSON();
-        obj = {
-          'data': element.payload.toJSON(),
-          'key': element.key
-        };
-        this.categories.push(obj);
+        this.categories.push(Object.assign({ 'key': element.key }, element.payload.toJSON()));
       });
     })
   }
 
   addProduct = (product) => {
+    var res = {};
    if(this.id){
-    var res  = this.productService.update(this.id,product);
+    res  = this.productService.update(this.id,product);
     if(res){
       this.toastr.success('Sucess!', 'Product updated successfully !!!');
       this.router.navigate(['admin-products']);
     }
    } else {
-    var res1 = this.productService.create(product);
+    res = this.productService.create(product);
     if(res){
      this.toastr.success('Sucess!', 'Product added successfully !!!');
       this.router.navigate(['admin-products']);

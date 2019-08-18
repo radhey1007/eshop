@@ -1,0 +1,19 @@
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #83b7ec;
+}
+.list-group-item:hover {
+   position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #007bff;
+}
+
+.list-group-item-action {
+    color: #ffff;
+    background-color: black;
+}

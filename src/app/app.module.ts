@@ -65,7 +65,7 @@ import {DataTableModule} from 'angular5-data-table';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    DataTableModule
+    DataTableModule.forRoot()
   ],
   providers: [
     AuthService,

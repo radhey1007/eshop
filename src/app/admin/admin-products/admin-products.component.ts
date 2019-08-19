@@ -24,17 +24,14 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   itemCount: number = 0;
   searchBy: any = [
     {
-      'key': 1,
       'value': 'title',
       'name': 'Title'
     },
     {
-      'key': 2,
       'value': 'price',
       'name': 'Price'
     },
     {
-      'key': 3,
       'value': 'category',
       'name': 'Category'
     }

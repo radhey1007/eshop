@@ -40,7 +40,6 @@ export class ProductsComponent {
     }
 
     getCategoryList = () => {
-    var obj = {};
     this.categoryService.getCategoryList().snapshotChanges().subscribe(res => {
       res.forEach((element, i) => {
         element.payload.toJSON();

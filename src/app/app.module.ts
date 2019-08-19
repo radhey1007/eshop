@@ -37,6 +37,8 @@ import { ProductService } from './providers/product.service';
 import { CommonFunctionsService } from './providers/common-functions.service';
 
 import {DataTableModule} from 'angular5-data-table';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+
 
 
 @NgModule({
@@ -65,7 +67,8 @@ import {DataTableModule} from 'angular5-data-table';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    DataTableModule.forRoot()
+    DataTableModule.forRoot(),
+    NgxImageZoomModule.forRoot()
   ],
   providers: [
     AuthService,

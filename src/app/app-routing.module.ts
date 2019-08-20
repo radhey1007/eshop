@@ -13,7 +13,7 @@ import { AuthGuardService } from './providers/auth-guard.service';
 import { AdminAuthGuardService } from './providers/admin-auth/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
-
+ 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },

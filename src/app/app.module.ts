@@ -77,8 +77,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     UserService,
     CategoryService,
     ProductService,
-    CommonFunctionsService
-    
+    CommonFunctionsService,
   ],
   bootstrap: [AppComponent]
 })

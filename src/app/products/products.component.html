@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-3">
     <div class="list-group">
+      <a routerlink="/" class="list-group-item list-group-item-action " [class.active]="!categories">All Categories</a>
       <a *ngFor="let data of categories; let i=index" 
       class="list-group-item list-group-item-action "
       routerLink="/"

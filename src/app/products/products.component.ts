@@ -1,6 +1,5 @@
 import { switchMap, flatMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from './../providers/category.service';
 import { ProductService } from 'src/app/providers/product.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,21 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent {
   product: any = [];
-  categories: any = [];
   categoryName: string;
   filteredProduct: any = [];
 
-  constructor(public productService: ProductService, public categoryService: CategoryService, public route: ActivatedRoute) {
-
+  constructor(public productService: ProductService, public route: ActivatedRoute) {
     this.getProductList();
-    this.getCategoryList();
-    console.log('test')
   }
-
-  ionViewdidload() {
-    console.log('test')
-  }
-
 
   getProductList = () => {
     this.filteredProduct = [];
@@ -46,15 +36,6 @@ export class ProductsComponent {
     })
   }
 
-  getCategoryList = () => {
-    this.categoryService.getCategoryList().snapshotChanges().subscribe(res => {
-      this.categories.push({ 'key': '', name: "All Categories" });
-      res.forEach((element, i) => {
-        element.payload.toJSON();
-        this.categories.push(Object.assign({ 'key': element.key }, element.payload.toJSON()));
-      });
-    })
-  }
 
   trackByProduct = (index, item) => {
     if (!item) return null;

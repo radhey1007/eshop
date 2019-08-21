@@ -38,6 +38,8 @@ import { CommonFunctionsService } from './providers/common-functions.service';
 
 import {DataTableModule} from 'angular5-data-table';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 
@@ -54,7 +56,9 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

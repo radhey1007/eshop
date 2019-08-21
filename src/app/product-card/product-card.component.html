@@ -1,8 +1,10 @@
-<div class="card" style="width: 15rem;">
-  <img class="card-img-top" [src]="product.imageUrl" alt="Card image cap">
+<div class="card"  *ngIf="product.title" style="width: 15rem;">
+  <img class="card-img-top"  *ngIf="product.imageUrl" [src]="product.imageUrl" alt="{{product.title}}">
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <p class="card-text">{{product.category}}</p>
+  </div>
+  <div class="card-footer">
     <a href="#" class="btn btn-primary">ADD TO CART</a>
   </div>
 </div>

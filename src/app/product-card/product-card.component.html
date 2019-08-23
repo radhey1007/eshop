@@ -1,10 +1,12 @@
-<div class="card"  *ngIf="product.title" style="width: 15rem;">
+<div class="card"  *ngIf="product.title">
   <img class="card-img-top"  *ngIf="product.imageUrl" [src]="product.imageUrl" alt="{{product.title}}">
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <p class="card-text">{{product.category}}</p>
+    <p class="card-text"><strong *ngIf="product.price">$</strong> {{product.price}}</p>
+
   </div>
-  <div class="card-footer">
-    <a href="#" class="btn btn-primary">ADD TO CART</a>
+  <div class="card-footer" *ngIf="showActions">
+    <a href="#" class="btn btn-primary btn-block">ADD TO CART</a>
   </div>
 </div>

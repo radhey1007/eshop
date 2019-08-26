@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './providers/shopping-cart.service';
 import { CategoryService } from './providers/category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -82,6 +83,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     CategoryService,
     ProductService,
     CommonFunctionsService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

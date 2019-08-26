@@ -1,16 +1,21 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" routerLink="/">O</a>
+    <a class="navbar-brand" routerLink="/"><img src ="../assets/images/logo-4.png" class="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+          <a class="nav-link" routerLink="/shopping-cart">
+            <img src ="../assets/images/cart-1.png" class="logo">
+            <span *ngIf="shoppingCartItemCount > 0" class="badge badge-light">{{ shoppingCartItemCount }}</span>
+          </a>
         </li>
         <ng-template #anonymousUser>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a class="nav-link" routerLink="/login">
+              <img src ="../assets/images/login-2.png" class="logo">              
+            </a>
           </li>
         </ng-template>
         <li *ngIf ="appUser; else anonymousUser" ngbDropdown  class="nav-item dropdown">

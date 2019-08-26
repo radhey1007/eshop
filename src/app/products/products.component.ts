@@ -1,7 +1,9 @@
+import { Subscription } from 'rxjs/Subscription';
+import { ShoppingCartService } from './../providers/shopping-cart.service';
 import { switchMap, flatMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/providers/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 
 
@@ -11,14 +13,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit , OnDestroy {
   product: any = [];
   categoryName: string;
   filteredProduct: any = [];
-
-  constructor(public productService: ProductService, public route: ActivatedRoute) {
+  cart: any;
+  Subscription :Subscription;
+  constructor(public productService: ProductService, public route: ActivatedRoute, public cartService: ShoppingCartService) {
     this.getProductList();
+    this.ngOnInit();
   }
+
+ // get the product list
 
   getProductList = () => {
     this.filteredProduct = [];
@@ -36,10 +42,24 @@ export class ProductsComponent {
     })
   }
 
-
   trackByProduct = (index, item) => {
     if (!item) return null;
 
     return index;
   }
+
+// get the Cart Data
+  ngOnInit = async () => {
+    console.log('in ngOnInIt');
+    this.Subscription = (await this.cartService.getCart())
+      .snapshotChanges()
+      .subscribe((cart: any) => {
+         this.cart = cart.payload.toJSON();
+      });      
+  }
+
+  ngOnDestroy = () => {
+    this.Subscription.unsubscribe();
+  }
+
 }

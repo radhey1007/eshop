@@ -21,7 +21,6 @@ export class ShoppingCartService {
   }
   // getCart = async () => {
     async getCart(): Promise<AngularFireObject<ShoppingCart>> {
-
     let cartId = await this.getOrCreateCartId(); 
     return this.db.object('/shopping-carts/' + cartId);
   }
@@ -57,6 +56,10 @@ export class ShoppingCartService {
       else obj  = {'product':product,'quantity':item.payload.toJSON().quantity + updatedQuantity};      
       items.update(obj);   
     })  
+  }
+
+  calculateQuantity = () => {
+    
   }
 
 }

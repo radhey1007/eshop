@@ -8,7 +8,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shopping-cart">
             <img src ="../assets/images/cart-1.png" class="logo">
-            <span *ngIf="shoppingCartItemCount > 0" class="badge badge-light">{{ shoppingCartItemCount }}</span>
+            <!-- *ngIf="shoppingCartItemCount > 0" -->
+            <span *ngIf="cart$ | async as cart" class="badge badge-light">
+              <!-- {{ shoppingCartItemCount }} -->
+              {{ cart.totalItemsCount }}
+            </span>
           </a>
         </li>
         <ng-template #anonymousUser>

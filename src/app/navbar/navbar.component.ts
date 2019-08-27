@@ -34,14 +34,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
 
     console.log('call onit');
-    ///this.cart$ = await this.cartService.getCart();
+    
+    this.cart$ = await this.cartService.getCart().then((res:any)=>this.cart = res);
 
-    this.Subscription = (await this.cartService.getCart())
-        .snapshotChanges()
-        .subscribe((cart: any) => {
-           this.cart = cart.payload.toJSON();
-           this.calculateCartQuantity(this.cart);
-        });  
+    console.log(this.cart$ , 'objjjjj')
+
+    // Another way to calculate total
+
+    // this.Subscription = (await this.cartService.getCart())
+    //     .snapshotChanges()
+    //     .subscribe((cart: any) => {
+    //        this.cart = cart.payload.toJSON();
+    //        this.calculateCartQuantity(this.cart);
+    //     });  
+
+    // Another way to calculate total
 
   }
 

@@ -1,8 +1,11 @@
 import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart {
-    items : ShoppingCartItem[];
+    //items : ShoppingCartItem[];
 
+    constructor(public items : ShoppingCartItem[]){
+
+    }
 
     get totalItemsCount() {
         let count:any = 0;

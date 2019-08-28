@@ -21,9 +21,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   appUser: AppUser;
   cart: any;
   Subscription: Subscription;
-   shoppingCartItemCount: any = 0;
+  shoppingCartItemCount: any = 0;
 
-   cart$ : Observable<ShoppingCart>; 
+  //cart$ : Observable<ShoppingCart>; 
 
   constructor(public angularFireAuth: AngularFireAuth, public auth: AuthService, public cartService: ShoppingCartService) {
     this.ngOnInit();
@@ -31,28 +31,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit = async () => {
 
-    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-
-    console.log('call onit');
-    
-    // Another way to calculate total
+    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);    
+    //  calculate total quantity
     this.Subscription = (await this.cartService.getCart())
         .snapshotChanges()
         .subscribe((cart: any) => {
            this.cart = cart.payload.toJSON();
-           this.calculateCartQuantity(this.cart);
-        });   
-        
-
-    // Another way to calculate total
-
+           this.shoppingCartItemCount = this.cartService.calculateCartQuantity(this.cart);
+        });       
+    // calculate total quantity
   }
 
-  calculateCartQuantity(cart: any) {
-    let cartItemArray = Object.values(cart.items);
-    this.shoppingCartItemCount = cartItemArray.reduce((sum: number, current: any) => sum + current.quantity, 0);
-    console.log(this.shoppingCartItemCount, 'Radhey total qty');
-  }
+ 
 
   ngOnDestroy = () => {
     this.Subscription.unsubscribe();

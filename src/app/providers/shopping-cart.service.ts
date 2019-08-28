@@ -60,8 +60,8 @@ export class ShoppingCartService {
 
   calculateCartQuantity = (cart: any) => {
       let cartItemArray = Object.values(cart.items);
+      console.log(cartItemArray , 'cartItemArray');
       let count = cartItemArray.reduce((sum: number, current: any) => sum + current.quantity, 0);
-      console.log(count, 'Radhey total qty');
       return count;
     }
   }

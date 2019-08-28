@@ -32,6 +32,10 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
     // calculate total quantity
   }
 
+  getProductIds = () => {
+    
+  }
+
   ngOnDestroy = () => {
     this.Subscription.unsubscribe();
   }

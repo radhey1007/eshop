@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         .snapshotChanges()
         .subscribe((cart: any) => {
            this.cart = cart.payload.toJSON();
+           console.log(Object.keys(this.cart.items) , 'TEST ');
            this.shoppingCartItemCount = this.cartService.calculateCartQuantity(this.cart);
         });       
     // calculate total quantity

@@ -10,14 +10,27 @@
     <tr>
       <th>Product</th>
       <th>Quantity</th>
-      <th></th>
+      <th>Price</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+    <tr *ngFor="let productId of productIdsArray" >
+      <td *ngIf="cart.items[productId].quantity !=0">
+        {{ cart.items[productId].product.title }}
+      </td>
+      <td *ngIf="cart.items[productId].quantity !=0">
+        {{ cart.items[productId].quantity }}
+      </td>
+      <td *ngIf="cart.items[productId].quantity !=0">
+        {{ getPrice(cart.items[productId].product.price , cart.items[productId].quantity) | currency:'USD':true }}
+      </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong> Sum is  {{ cartTotal  | currency:'USD':true }}</strong></td>
+    </tr>
+  </tfoot>
 </table>

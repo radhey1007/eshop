@@ -12,6 +12,10 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
   cart;
   Subscription: Subscription;
   shoppingCartItemCount: any =0;
+  productIdsArray: any = [];
+  rowTotal: any = [];
+  cartTotal: any=0;
+
 
   constructor(public cartService:ShoppingCartService) {
 
@@ -21,19 +25,21 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
 
 
   ngOnInit = async () => {
-    console.log('test in sccccc')
-    //  calculate total quantity
+    //  calculate total quantity , cartTotal
     this.Subscription = (await this.cartService.getCart())
     .snapshotChanges()
     .subscribe((cart: any) => {
        this.cart = cart.payload.toJSON();
+       this.productIdsArray = this.cartService.getpoductIds(this.cart);    
        this.shoppingCartItemCount = this.cartService.calculateCartQuantity(this.cart);
+       this.cartTotal = this.cartService.calculateCartTotalPrice(Object.values(this.cart.items)); 
     }); 
     // calculate total quantity
   }
 
-  getProductIds = () => {
-    
+  getPrice = (price,quantity) => {
+    this.rowTotal.push(this.cartService.getPrice(price,quantity));
+    return this.cartService.getPrice(price,quantity);
   }
 
   ngOnDestroy = () => {

@@ -64,5 +64,22 @@ export class ShoppingCartService {
       let count = cartItemArray.reduce((sum: number, current: any) => sum + current.quantity, 0);
       return count;
     }
+
+    getpoductIds = (cart:any) => {
+      return Object.keys(cart.items);
+    }
+
+    getPrice = (price,quantity) => {
+      return price * quantity ;
+    }
+
+    calculateCartTotalPrice = (rowTotalArray:any) => {
+       let rowPrice :any = [];
+       rowTotalArray.forEach((element,i) => {
+         rowPrice[i] = element.product.price * element.quantity;
+     });
+      return rowPrice.reduce((sum: number, current: any) => sum + current, 0);
+    }
+
   }
 

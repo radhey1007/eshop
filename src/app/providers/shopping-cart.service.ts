@@ -64,5 +64,14 @@ export class ShoppingCartService {
       console.log(count, 'Radhey total qty');
       return count;
     }
+
+    getpoductIds = (cart:any) => {
+      return Object.keys(cart.items);
+    }
+
+    getPrice = (price,quantity) => {
+      return price * quantity ;
+    }
+
   }
 

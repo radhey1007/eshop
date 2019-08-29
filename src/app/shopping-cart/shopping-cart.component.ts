@@ -12,6 +12,10 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
   cart;
   Subscription: Subscription;
   shoppingCartItemCount: any =0;
+  productIdsArray: any = [];
+
+
+ 
 
   constructor(public cartService:ShoppingCartService) {
 
@@ -21,19 +25,38 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
 
 
   ngOnInit = async () => {
-    console.log('test in sccccc')
     //  calculate total quantity
     this.Subscription = (await this.cartService.getCart())
     .snapshotChanges()
     .subscribe((cart: any) => {
        this.cart = cart.payload.toJSON();
+
+
+       console.log(this.cart.items , 'in cart total price');
+      //  let rowTotal :any = [];
+      //  this.cart.items.forEach(element => {
+      //   rowTotal = this.getPrice(element.product.price,element.quantity);  
+      //  });
+       
+      //  console.log(rowTotal , 'rowTotal');
+ 
+       this.productIdsArray = this.cartService.getpoductIds(this.cart);     
        this.shoppingCartItemCount = this.cartService.calculateCartQuantity(this.cart);
     }); 
     // calculate total quantity
   }
 
+  getPrice = (price,quantity) => {
+    return this.cartService.getPrice(price,quantity);
+  }
+
   ngOnDestroy = () => {
     this.Subscription.unsubscribe();
+  }
+
+
+  getCartTotalPrice = () => {
+    console.log(this.cart , 'in cart total price');
   }
 
 }

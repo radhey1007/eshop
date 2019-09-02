@@ -6,7 +6,7 @@
   </p>
 </ng-container>
 <table class="table">
-  <thead>
+  <thead *ngIf="productIdsArray.length > 0">
     <tr>
       <th>Product</th>
       <th>Quantity</th>
@@ -19,10 +19,15 @@
         {{ cart.items[productId].product.title }}
       </td>
       <td *ngIf="cart.items[productId].quantity !=0">
-        {{ cart.items[productId].quantity }}
+        <!-- {{ cart.items[productId].quantity }} -->
+       
+        <product-quantity [product]="cart.items[productId].product" [shopping-cart]="cart">
+          
+        </product-quantity>
+
       </td>
       <td *ngIf="cart.items[productId].quantity !=0">
-        {{ getPrice(cart.items[productId].product.price , cart.items[productId].quantity) | currency:'USD':true }}
+        {{ getPrice(cart.items[productId].product.price , cart.items[productId].quantity)}}
       </td>
     </tr>
   </tbody>
@@ -30,7 +35,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td><strong> Sum is  {{ cartTotal  | currency:'USD':true }}</strong></td>
+      <td><strong> Sum is  {{ cartTotal }}</strong></td>
     </tr>
   </tfoot>
 </table>

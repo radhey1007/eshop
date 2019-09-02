@@ -48,6 +48,7 @@ export class ShoppingCartService {
   }
 
   updateItemQuantity = async (product:any,updatedQuantity) => {
+
     let obj = {};
     let cartId = await this.getOrCreateCartId();
     let items = this.getItem(cartId,product.key);
@@ -60,7 +61,6 @@ export class ShoppingCartService {
 
   calculateCartQuantity = (cart: any) => {
       let cartItemArray = Object.values(cart.items);
-      console.log(cartItemArray , 'cartItemArray');
       let count = cartItemArray.reduce((sum: number, current: any) => sum + current.quantity, 0);
       return count;
     }
@@ -70,13 +70,15 @@ export class ShoppingCartService {
     }
 
     getPrice = (price,quantity) => {
-      return price * quantity ;
+      return price * quantity;
     }
 
     calculateCartTotalPrice = (rowTotalArray:any) => {
-       let rowPrice :any = [];
-       rowTotalArray.forEach((element,i) => {
-         rowPrice[i] = element.product.price * element.quantity;
+       let rowPrice  = [];
+       let cartArray = [];
+       cartArray = Object.values(rowTotalArray.items);
+       cartArray.forEach((element,i) => {
+         rowPrice[i] = this.getPrice(element.product.price , element.quantity);
      });
       return rowPrice.reduce((sum: number, current: any) => sum + current, 0);
     }

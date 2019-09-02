@@ -30,9 +30,9 @@ export class ShoppingCartComponent implements OnInit ,OnDestroy {
     .snapshotChanges()
     .subscribe((cart: any) => {
        this.cart = cart.payload.toJSON();
-       this.productIdsArray = this.cartService.getpoductIds(this.cart);    
+       this.cartTotal = this.cartService.calculateCartTotalPrice(this.cart); 
        this.shoppingCartItemCount = this.cartService.calculateCartQuantity(this.cart);
-       this.cartTotal = this.cartService.calculateCartTotalPrice(Object.values(this.cart.items)); 
+       this.productIdsArray = this.cartService.getpoductIds(this.cart);    
     }); 
     // calculate total quantity
   }

@@ -1,6 +1,5 @@
 import { ShoppingCartService } from './../providers/shopping-cart.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { async } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'product-card',
@@ -20,12 +19,8 @@ export class ProductCardComponent {
     this.cartService.addToCart(this.product);
   }
 
-  removeFromCart = () => {
-    this.cartService.removeFromCart(this.product);
-  }
-
   getQuantity = () => {
-
+ 
     if(!this.shoppingCart) return 0;
 
     let item = this.shoppingCart.items[this.product.key];

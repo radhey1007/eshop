@@ -52,7 +52,13 @@ export class ShoppingCartService {
     let obj = {};
     let cartId = await this.getOrCreateCartId();
     let items = this.getItem(cartId,product.key);
-    items.snapshotChanges().take(1).subscribe((item: any) => {
+     items.snapshotChanges().take(1).subscribe((item: any) => {
+    //items.valueChanges().take(1).subscribe((item: any) => {
+      //console.log(item.length , 'update item quantity');
+      // if(!item || typeof(item) == undefined) obj = {'product':product , 'quantity':updatedQuantity};
+      // else obj  = {'product':product,'quantity':item.quantity + updatedQuantity};      
+      // items.update(obj);
+
       if(item.payload.toJSON() == null) obj = {'product':product , 'quantity':updatedQuantity};
       else obj  = {'product':product,'quantity':item.payload.toJSON().quantity + updatedQuantity};      
       items.update(obj);   

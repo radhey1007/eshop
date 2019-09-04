@@ -19,12 +19,10 @@
       <td>
         <div [style.backgroundImage]="'url(' + cart.items[productId].product.imageUrl + ')'" class="thumbnail"></div>
       </td>
-      <td >
+      <td>
         {{ cart.items[productId].product.title }}
       </td>
-      <td >
-        <!-- {{ cart.items[productId].quantity }} -->
-       
+      <td>      
         <product-quantity [product]="cart.items[productId].product" [shopping-cart]="cart">          
         </product-quantity>
 

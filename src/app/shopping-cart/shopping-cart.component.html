@@ -16,18 +16,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let productId of productIdsArray" >
-      <td>
+      <td *ngIf="cart.items[productId].quantity > 0">
         <div [style.backgroundImage]="'url(' + cart.items[productId].product.imageUrl + ')'" class="thumbnail"></div>
       </td>
-      <td>
+      <td *ngIf="cart.items[productId].quantity > 0">
         {{ cart.items[productId].product.title }}
       </td>
-      <td>      
+      <td *ngIf="cart.items[productId].quantity > 0">      
         <product-quantity [product]="cart.items[productId].product" [shopping-cart]="cart">          
         </product-quantity>
 
       </td>
-      <td>
+      <td *ngIf="cart.items[productId].quantity > 0">
         {{ getPrice(cart.items[productId].product.price , cart.items[productId].quantity)}}
       </td>
     </tr>
